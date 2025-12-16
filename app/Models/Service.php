@@ -1,0 +1,16 @@
+<?php // app/Models/Service.php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+
+class Service extends Model
+{
+    use HasFactory;
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'icon', 'features'];
+    protected $casts = ['features' => 'array'];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+}
