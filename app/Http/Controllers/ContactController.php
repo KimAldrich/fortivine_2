@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ContactMessage;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -22,16 +21,13 @@ class ContactController extends Controller
             'subject' => 'required|in:Sales Inquiry,Technical Support,Partnership Opportunity',
             'message' => 'required|string|min:10',
         ]);
-        $data['type'] = 'contact';
-        $data['status'] = 'new';
-        $msg = ContactMessage::create($data);
 
         $recipient = in_array($data['subject'], ['Sales Inquiry', 'Partnership Opportunity'])
             ? 'inquiries@fortivinetech.com'
             : 'support@fortivinetech.com';
 
-        Mail::raw("Inquiry from {$msg->name} ({$msg->email})\n\n{$msg->message}", function ($m) use ($recipient, $msg) {
-            $m->to($recipient)->subject("FortiVine Inquiry: {$msg->subject}");
+        Mail::raw("Inquiry from {$data['name']} ({$data['email']})\n\n{$data['message']}", function ($m) use ($recipient, $data) {
+            $m->to($recipient)->subject("FortiVine Inquiry: {$data['subject']}");
         });
 
         return back()->with('success', 'Thanks! Your message was sent.');

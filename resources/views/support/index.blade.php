@@ -272,18 +272,6 @@
           </details>
         </div>
 
-        {{-- Optional database FAQs --}}
-        @php($faqs = \App\Models\Faq::all())
-        @if($faqs->count())
-          <div class="faq-list" style="margin-top:1rem;">
-            @foreach($faqs as $f)
-              <details class="faq">
-                <summary>{{ $f->question }}</summary>
-                <div class="faq-body">{{ $f->answer }}</div>
-              </details>
-            @endforeach
-          </div>
-        @endif
       </article>
 
       {{-- Support Ticket Form --}}

@@ -320,13 +320,6 @@
         <p class="author">— Managing Partner, Sustainable Growth Alliance</p>
       </article>
 
-      {{-- Dynamic testimonials from database --}}
-      @foreach(\App\Models\Testimonial::with('project')->get() as $t)
-        <article class="card testimonial">
-          <blockquote>"{{ $t->quote }}"</blockquote>
-          <p class="author">— {{ $t->author }}, {{ $t->role }}, {{ $t->company }}</p>
-        </article>
-      @endforeach
 
     </div>
   </div>

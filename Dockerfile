@@ -6,10 +6,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo bcmath \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    zip \
-    && docker-php-ext-install pdo pdo_mysql zip
 # 2. Apache Configuration: Point to /public (important for Laravel)
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf

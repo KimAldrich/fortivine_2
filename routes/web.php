@@ -23,18 +23,18 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/awards', [PageController::class, 'awards'])->name('awards');
 
-// Services
-Route::resource('services', ServiceController::class)->only(['index', 'show']);
+// Services (static content only)
+Route::resource('services', ServiceController::class)->only(['index']);
 
 // Portfolio / Projects
-Route::resource('projects', ProjectController::class)->only(['index', 'show']);
+Route::resource('projects', ProjectController::class)->only(['index']);
 
 // Testimonials & Partners
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
 
 // Careers & Events
-Route::resource('events', EventController::class)->only(['index', 'show']);
+Route::resource('events', EventController::class)->only(['index']);
 
 // Customer Service (FAQs + Support)
 Route::get('/customer-service', [SupportController::class, 'index'])->name('support.index');
@@ -62,4 +62,3 @@ Route::view('/legal/privacy', 'legal.privacy')->name('legal.privacy');
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
-

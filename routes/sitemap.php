@@ -1,7 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
-use App\Models\{Service, Project, Event};
+
 Route::get('/sitemap.xml', function () {
     $urls = [
         url('/'),
@@ -17,11 +16,11 @@ Route::get('/sitemap.xml', function () {
         url('/legal/terms'),
         url('/legal/privacy')
     ];
-    foreach (Service::pluck('slug') as $s)
+    foreach (['agri-waste', 'energy-efficiency', 'esg-analytics'] as $s)
         $urls[] = url('/services/' . $s);
-    foreach (Project::pluck('slug') as $p)
+    foreach (['recycling-and-rewards', 'study-sphere', 'greencart', 'ecoward'] as $p)
         $urls[] = url('/projects/' . $p);
-    foreach (Event::pluck('slug') as $e)
+    foreach (['green-tech-summit', 'sustainability-hackathon', 'career-open-house'] as $e)
         $urls[] = url('/events/' . $e);
     return response()->view('sitemap.xml', compact('urls'))->header('Content-Type', 'application/xml');
 })->name('sitemap.xml');
