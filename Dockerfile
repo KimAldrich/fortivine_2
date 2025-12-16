@@ -2,9 +2,8 @@ FROM php:8.2-apache
 
 # 1. Install development packages and clean up apt cache.
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
     unzip \
-    && docker-php-ext-install pdo pdo_pgsql bcmath \
+    && docker-php-ext-install pdo bcmath \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Apache Configuration: Point to /public (important for Laravel)

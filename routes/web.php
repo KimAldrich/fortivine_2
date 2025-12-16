@@ -62,3 +62,4 @@ Route::view('/legal/privacy', 'legal.privacy')->name('legal.privacy');
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
+
